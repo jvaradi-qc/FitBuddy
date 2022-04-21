@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         return true
     }
     // Logout btn selected
-    override fun onOptionsItemSelected(item: MenuItem) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.i(TAG, "Button clicked")
         ParseUser.logOut()
         val currentUser = ParseUser.getCurrentUser()
-        true
+        return true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
