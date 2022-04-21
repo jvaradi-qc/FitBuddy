@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FitBuddy</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">0FvgDmGsJCjaawgZ9ltUfAok7SYvUOghrycKf6Xg</string>
+    <string name="back4app_client_key">yryuMU9Qowy6qukZLbQfChDbDitWBJhU0qSnl63D</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
