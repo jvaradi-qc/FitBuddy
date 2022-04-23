@@ -1,4 +1,4 @@
-package group.six.projects.fitbuddy
+package com.groupsix.fitbuddy
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,10 +7,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import com.parse.ParseObject
 import com.parse.ParseUser
-import group.six.projects.fitbuddy.MainActivity.Companion.TAG
+import com.groupsix.fitbuddy.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +46,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
-
-    private fun signUpUser(username: String, password: String){
+    private fun signUpUser(username: String, password: String) {
         // Create the ParseUser
         val user = ParseUser()
 
@@ -77,26 +73,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(username: String, password: String) {
-        ParseUser.logInInBackground(username, password, ({ user, e ->
-            if (user != null) {
-                Log.i(TAG, "Successfully logged in user")
-                // Hooray!  The user is logged in.
-                goToMainActivity()
-            } else {
-                e.printStackTrace()
-                Toast.makeText(this, "Error logging in", Toast.LENGTH_SHORT).show()
-                // Signup failed.  Look at the ParseException to see what happened.
-            }})
+        ParseUser.logInInBackground(
+            username, password, ({ user, e ->
+                if (user != null) {
+                    Log.i(TAG, "Successfully logged in user")
+                    // Hooray!  The user is logged in.
+                    goToMainActivity()
+                } else {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Error logging in", Toast.LENGTH_SHORT).show()
+                    // Signup failed.  Look at the ParseException to see what happened.
+                }
+            })
         )
     }
 
 
-    private fun goToMainActivity(){
+    private fun goToMainActivity() {
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
+
     companion object {
-        const val  TAG = "LoginActivity"
+        const val TAG = "LoginActivity"
     }
 }

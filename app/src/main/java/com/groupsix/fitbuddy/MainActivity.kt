@@ -1,4 +1,4 @@
-package group.six.projects.fitbuddy
+package com.groupsix.fitbuddy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,13 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.parse.Parse
-import com.parse.ParseObject
 import com.parse.ParseUser
-import group.six.projects.fitbuddy.fragments.ComposeFragment
-import group.six.projects.fitbuddy.fragments.HealthFragment
-import group.six.projects.fitbuddy.fragments.HomeFragment
-import group.six.projects.fitbuddy.fragments.ProfileFragment
+import com.groupsix.fitbuddy.fragments.ComposeFragment
+import com.groupsix.fitbuddy.fragments.HealthFragment
+import com.groupsix.fitbuddy.fragments.HomeFragment
+import com.groupsix.fitbuddy.fragments.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
     // Logout btn selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.i(TAG, "Button clicked")
@@ -38,11 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager: FragmentManager = supportFragmentManager
 
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
-            item ->
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener { item ->
             var fragmentToShow: Fragment? = null
 
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.action_home -> {
                     fragmentToShow = HomeFragment()
                     Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
@@ -52,16 +50,17 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Compose", Toast.LENGTH_SHORT).show()
                 }
                 R.id.action_health -> {
-                    fragmentToShow = HealthFragment ()
+                    fragmentToShow = HealthFragment()
                     Toast.makeText(this, "Health", Toast.LENGTH_SHORT).show()
                 }
                 R.id.action_profile -> {
-                    fragmentToShow = ProfileFragment ()
+                    fragmentToShow = ProfileFragment()
                     Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
                 }
             }
             if (fragmentToShow != null) {
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragmentToShow).commit()
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragmentToShow)
+                    .commit()
             }
 
             true
@@ -69,7 +68,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_home
 
     }
+
     companion object {
-        const val  TAG = "MainActivity"
+        const val TAG = "MainActivity"
     }
 }

@@ -11,6 +11,17 @@
         <entry key="..\:/Users/yousu/AndroidStudioProjects/FitBuddy/app/src/main/res/layout/item_post.xml" value="0.23209428830462375" />
         <entry key="..\:/Users/yousu/AndroidStudioProjects/FitBuddy/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.25" />
         <entry key="..\:/Users/yousu/AndroidStudioProjects/FitBuddy/app/src/main/res/menu/menu_main.xml" value="0.2552372808892689" />
+        <entry key="app/src/main/res/drawable/ic_action_health.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_action_home.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_action_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.12386018237082067" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_health.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/fileprovider.xml" value="0.1" />
       </map>
     </option>
   </component>

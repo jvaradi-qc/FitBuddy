@@ -1,4 +1,4 @@
-package group.six.projects.fitbuddy.fragments
+package com.groupsix.fitbuddy.fragments
 
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -19,8 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.parse.ParseFile
 import com.parse.ParseUser
-import group.six.projects.fitbuddy.MainActivity
-import group.six.projects.fitbuddy.R
+import com.groupsix.fitbuddy.MainActivity
+import com.groupsix.fitbuddy.R
 import java.io.File
 
 // TODO: Rename parameter arguments, choose names that match
@@ -66,30 +66,33 @@ class ComposeFragment : Fragment() {
             } else {
                 //TODO: Print error log message
                 Log.i(MainActivity.TAG, "Error, No Image Found")
-                //TODO: show a toast to the user to let them know how to take a picture
+                //TODO: show a toast to the user to let them know to take a picture
+                Toast.makeText(requireContext(), "No picture selected", Toast.LENGTH_SHORT).show()
             }
 
         }
 
         view.findViewById<Button>(R.id.imagebutton).setOnClickListener {
             // Launch camera to let user take picture
+            Log.i(TAG, "Add Image button clicked")
             onLaunchCamera()
         }
     }
-    fun submitPost(description: String, user: ParseUser, file: File){
+
+    fun submitPost(description: String, user: ParseUser, file: File) {
         //Create the post inject
         val post = Post()
         post.setDescription(description)
         post.setUser(user)
         post.setImage(ParseFile(file))
-        post.saveInBackground{ exception ->
-            if(exception != null){
+        post.saveInBackground { exception ->
+            if (exception != null) {
                 //something has went wrong
                 Log.e(MainActivity.TAG, "Error while saving post")
                 exception.printStackTrace()
                 //TODO: Show a toast to tell user something has went wrong with saving post
-                Toast.makeText(requireContext(),"Post save Error", Toast.LENGTH_SHORT).show()
-            } else{
+                Toast.makeText(requireContext(), "Post save Error", Toast.LENGTH_SHORT).show()
+            } else {
                 Log.i(MainActivity.TAG, "Successfully saved post")
                 //TODO: Resetting the EditText field to be empty
                 //TODO: Reset the ImageView to empty
@@ -99,6 +102,32 @@ class ComposeFragment : Fragment() {
         }
     }
 
+
+    fun onLaunchCamera() {
+        // create Intent to take a picture and return control to the calling application
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        // Create a File reference for future access
+        photoFile = getPhotoFileUri(photoFileName)
+
+        // wrap File object into a content provider
+        // required for API >= 24
+        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
+        if (photoFile != null) {
+            val fileProvider: Uri =
+                FileProvider.getUriForFile(requireContext(), "com.groupsix.fileprovider", photoFile!!)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
+
+            // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+            // So as long as the result is not null, it's safe to use the intent.
+
+            // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+            // So as long as the result is not null, it's safe to use the intent.
+            if (intent.resolveActivity(requireContext().packageManager) != null) {
+                // Start the image capture intent to take photo
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+            }
+        }
+    }
 
     fun getPhotoFileUri(fileName: String): File {
         // Get safe storage directory for photos
@@ -112,37 +141,11 @@ class ComposeFragment : Fragment() {
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-            Log.d(MainActivity.TAG, "failed to create directory")
+            Log.d(TAG, "failed to create directory")
         }
 
         // Return the file target for the photo based on filename
         return File(mediaStorageDir.path + File.separator + fileName)
-    }
-
-    fun onLaunchCamera() {
-        // create Intent to take a picture and return control to the calling application
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        // Create a File reference for future access
-        photoFile = getPhotoFileUri(photoFileName)
-
-        // wrap File object into a content provider
-        // required for API >= 24
-        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        if (photoFile != null) {
-            val fileProvider: Uri =
-                FileProvider.getUriForFile(requireContext(), "com.codepath.fileprovider", photoFile!!)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
-
-            // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-            // So as long as the result is not null, it's safe to use the intent.
-
-            // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-            // So as long as the result is not null, it's safe to use the intent.
-            if (intent.resolveActivity(requireContext().packageManager) != null) {
-                // Start the image capture intent to take photo
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
-            }
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -161,4 +164,8 @@ class ComposeFragment : Fragment() {
         }
     }
 
+    companion object {
+        const val TAG = "ComposeFragment"
+    }
 }
+

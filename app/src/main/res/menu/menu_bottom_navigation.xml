@@ -17,7 +17,7 @@
     <item
         android:id="@+id/action_health"
         android:icon="@drawable/ic_action_health"
-        android:title="Profile"
+        android:title="Health"
         app:showAsAction="always" />
 
     <item

@@ -1,4 +1,4 @@
-package com.example.instagramsimple
+package com.groupsix.fitbuddy
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import group.six.projects.fitbuddy.R
-import group.six.projects.fitbuddy.fragments.Post
+import com.groupsix.fitbuddy.fragments.Post
+import com.groupsix.fitbuddy.R
 
-class PostAdapter(val context: Context, val posts: ArrayList<Post>): RecyclerView.Adapter<PostAdapter.ViewHolder> () {
+class PostAdapter(val context: Context, val posts: ArrayList<Post>) :
+    RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.ViewHolder {
         // Specify the layout file to use for this item
 
@@ -27,6 +28,7 @@ class PostAdapter(val context: Context, val posts: ArrayList<Post>): RecyclerVie
         holder.bind(post)
 
     }
+
     // Clean all elements of the recycler
     fun clear() {
         posts.clear()
@@ -43,8 +45,8 @@ class PostAdapter(val context: Context, val posts: ArrayList<Post>): RecyclerVie
         return posts.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val username:TextView
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val username: TextView
         val ivFileView: ImageView
         val tvDescription: TextView
         val tvTimeStamp: TextView
@@ -56,10 +58,10 @@ class PostAdapter(val context: Context, val posts: ArrayList<Post>): RecyclerVie
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp)
         }
 
-        fun bind(post: Post){
+        fun bind(post: Post) {
             tvDescription.text = post.getDescription()
             username.text = post.getUser()?.username
-            tvTimeStamp.text = post.getTime()
+            tvTimeStamp.text = post.getTime().toString()
 
             //Populate Image
             Glide.with(itemView.context).load(post.getImage()?.url).into(ivFileView)

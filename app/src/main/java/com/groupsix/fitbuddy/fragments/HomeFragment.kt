@@ -1,4 +1,4 @@
-package group.six.projects.fitbuddy.fragments
+package com.groupsix.fitbuddy.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.instagramsimple.PostAdapter
+import com.groupsix.fitbuddy.PostAdapter
 import com.parse.FindCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
-import group.six.projects.fitbuddy.R
+import com.groupsix.fitbuddy.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,11 +26,12 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 open class HomeFragment : Fragment() {
-    lateinit var postsRecyclerView : RecyclerView
+    lateinit var postsRecyclerView: RecyclerView
     lateinit var swipeContainer: SwipeRefreshLayout
     lateinit var adapter: PostAdapter
+
     //    var createdAt: String = ""
-    var allPosts : MutableList<Post> = mutableListOf()
+    var allPosts: MutableList<Post> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +56,8 @@ open class HomeFragment : Fragment() {
             android.R.color.holo_blue_bright,
             android.R.color.holo_green_light,
             android.R.color.holo_orange_light,
-            android.R.color.holo_red_light);
+            android.R.color.holo_red_light
+        );
 
         //Steps to populate RecylerView
         // 1. Create layout for each row in list
@@ -69,8 +71,9 @@ open class HomeFragment : Fragment() {
 
         queryPosts()
     }
+
     //Query for all posts in our server
-    open fun queryPosts(){
+    open fun queryPosts() {
 
         //Specify which class to query
         val query: ParseQuery<Post> = ParseQuery.getQuery(Post::class.java)
@@ -81,15 +84,16 @@ open class HomeFragment : Fragment() {
         query.addDescendingOrder("createdAt")
         // Only return 20 posts.
         query.limit = 20
-        query.findInBackground (object : FindCallback<Post> {
+        query.findInBackground(object : FindCallback<Post> {
             override fun done(posts: MutableList<Post>?, e: ParseException?) {
-                if (e!= null){
+                if (e != null) {
                     //Something has went wrong
                     Log.e(TAG, "Error fetching posts")
-                }else {
-                    if (posts != null){
-                        for (post in posts){
+                } else {
+                    if (posts != null) {
+                        for (post in posts) {
                             Log.i(TAG, "Post: " + post.getDescription())
+                            Log.i(TAG, "createdAt: " + post.getTime())
                         }
                         //clear out current refreshed posts
                         adapter.clear()
@@ -102,7 +106,8 @@ open class HomeFragment : Fragment() {
 
         })
     }
+
     companion object {
-        const val  TAG = "HomeFragment"
+        const val TAG = "HomeFragment"
     }
 }

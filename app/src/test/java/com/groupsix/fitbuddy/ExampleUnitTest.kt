@@ -1,4 +1,4 @@
-package group.six.projects.fitbuddy
+package com.groupsix.fitbuddy
 
 import org.junit.Test
 

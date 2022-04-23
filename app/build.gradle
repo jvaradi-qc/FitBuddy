@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "group.six.projects.fitbuddy"
+        applicationId "com.groupsix.fitbuddy"
         minSdk 21
         targetSdk 32
         versionCode 1
