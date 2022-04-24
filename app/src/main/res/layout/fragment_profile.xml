@@ -1,58 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.ProfileFragment" >
 
+    <TextView
+        android:id="@+id/tvGenderLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Gender: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/gender_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@id/tvGenderLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAgeLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Age: "
+        app:layout_constraintStart_toEndOf="@id/gender_spinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/etAge"
-        android:layout_width="match_parent"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="none"
         android:hint="Age"
-        android:text="25" />
+        android:inputType="none"
+        android:text="25"
+        app:layout_constraintStart_toEndOf="@id/tvAgeLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvWeightLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Weight: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/height_feet_spinner" />
 
     <EditText
         android:id="@+id/etWeight"
-        android:layout_width="match_parent"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_margin="10dp"
         android:inputType="none"
-        android:text="129" />
+        android:text="129"
+        app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
+        app:layout_constraintTop_toBottomOf="@id/height_feet_spinner" />
+
+    <TextView
+        android:id="@+id/tvBMILabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="BMI: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etWeight" />
+
 
     <TextView
         android:id="@+id/tvBMI"
-        android:layout_width="match_parent"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:text="125" />
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toEndOf="@id/tvBMILabel"
+        app:layout_constraintTop_toBottomOf="@id/etWeight"
+        android:text="125"/>
+
+    <TextView
+        android:id="@+id/tvHeightLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Height: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGenderLabel" />
+
+    <TextView
+        android:id="@+id/tvHeightFeetLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:text="Feet: "
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHeightLabel"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/height_feet_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHeightLabel"
+        app:layout_constraintStart_toEndOf="@id/tvHeightFeetLabel"/>
+
+    <TextView
+        android:id="@+id/tvHeightInchesLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Inches: "
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHeightLabel"
+        app:layout_constraintStart_toEndOf="@id/height_feet_spinner" />
 
     <Spinner
         android:id="@+id/height_inches_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@id/gender_spinner"
+        app:layout_constraintStart_toEndOf="@id/tvHeightInchesLabel"/>
+
+    <TextView
+        android:id="@+id/tvFitnessGoalsLabel"
+        style="@style/TextAppearance.Material3.LabelMedium"
+        android:layout_width="94dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:text="Fitness Goal: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBMI" />
 
     <Spinner
         android:id="@+id/fitness_goal_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toEndOf="@id/tvFitnessGoalsLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvBMI" />
 
     <Button
-        android:id="@+id/btn_edit_save"
+        android:id="@+id/btn_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@id/btn_save" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
